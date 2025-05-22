@@ -24,7 +24,7 @@ public class InventoryManager {
      * Constructs a manager and loads inventory from CSV.
      *
      * @param csvPath path to CSV file
-     * @throws IOException if the file can’t be read
+     * @throws IOException if the file can't be read
      */
     public InventoryManager(String csvPath) throws IOException {
         this.inventory = CSVUtil.readInventoryFromCsv(csvPath);
@@ -32,6 +32,8 @@ public class InventoryManager {
 
     /**
      * Returns all books currently in inventory.
+     *
+     * @return a {@link List} of {@link Book} instances in inventory
      */
     public List<Book> listAllBooks() {
         return inventory.getBooks();
@@ -40,7 +42,7 @@ public class InventoryManager {
     /**
      * Adds a new book.
      *
-     * @param book the book to add
+     * @param book the {@link Book} to add
      */
     public void addBook(Book book) {
         inventory.addBook(book);
@@ -50,7 +52,7 @@ public class InventoryManager {
      * Removes a book by ISBN.
      *
      * @param isbn the ISBN to remove
-     * @return true if removed, false otherwise
+     * @return {@code true} if removed, {@code false} otherwise
      */
     public boolean removeBook(String isbn) {
         return inventory.removeBookByIsbn(isbn);
@@ -60,7 +62,7 @@ public class InventoryManager {
      * Updates a book. Matches by ISBN.
      *
      * @param book updated data
-     * @return true if updated
+     * @return {@code true} if updated, {@code false} otherwise
      */
     public boolean updateBook(Book book) {
         return inventory.updateBook(book);
@@ -70,7 +72,7 @@ public class InventoryManager {
      * Finds a book by ISBN.
      *
      * @param isbn the ISBN to find
-     * @return the book or null if not found
+     * @return the {@link Book} or {@code null} if not found
      */
     public Book findBook(String isbn) {
         return inventory.findByIsbn(isbn);

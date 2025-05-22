@@ -5,7 +5,6 @@ import com.ibrahim.bookstore.service.InventoryManager;
 import com.ibrahim.bookstore.service.ReportGenerator;
 import com.ibrahim.bookstore.service.SalesManager;
 import com.ibrahim.bookstore.util.CLI;
-
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -13,10 +12,16 @@ import java.time.LocalDate;
  * Entry point for the Bookstore Inventory Manager console application.
  * <p>
  * Initializes services and runs the main CLI loop until the user exits.
- * </p>
  */
 public class Main {
+    /** Prevent instantiation. */
+    private Main() { throw new AssertionError("Cannot instantiate Main"); }
 
+    /**
+     * Application entry point.
+     *
+     * @param args command-line arguments (ignored)
+     */
     public static void main(String[] args) {
         InventoryManager invMgr = new InventoryManager();
         SalesManager salesMgr = new SalesManager();

@@ -1,21 +1,24 @@
 package com.ibrahim.bookstore.service;
 
-import com.ibrahim.bookstore.model.Sale;
 import com.ibrahim.bookstore.model.Book;
+import com.ibrahim.bookstore.model.Sale;
 import com.ibrahim.bookstore.util.CSVUtil;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
  * Manages sale transactions and history.
  *
  * <p>This class records each sale, persists to CSV, and provides
- * analytics such as total revenue, top-selling titles, and filtering
- * by date range.</p>
+ * analytics such as total revenue, top-selling titles, and date filtering.</p>
  */
 public class SalesManager {
     private final List<Sale> sales;
@@ -38,8 +41,7 @@ public class SalesManager {
     }
 
     /**
-     * Records a sale of {@code quantity} copies of {@code book}
-     * at the current timestamp.
+     * Records a sale of copies of a book at the current timestamp.
      *
      * @param book     the book sold
      * @param quantity number of copies sold
@@ -51,7 +53,7 @@ public class SalesManager {
     /**
      * Returns all recorded sales as a new list.
      *
-     * @return defensive copy of sales history
+     * @return a defensive copy of the sales history
      */
     public List<Sale> listAllSales() {
         return new ArrayList<>(sales);
@@ -79,10 +81,10 @@ public class SalesManager {
     }
 
     /**
-     * Returns the top‐N selling books by total units sold.
+     * Returns the top-N selling books by units sold.
      *
      * @param topN the number of top titles to return
-     * @return a map of "ISBN - Title" to units sold, sorted descending
+     * @return a map of "ISBN - Title" to units sold, in descending order
      */
     public Map<String, Integer> topSellingBooks(int topN) {
         Map<String, Integer> counts = sales.stream()
@@ -104,7 +106,7 @@ public class SalesManager {
      *
      * @param start inclusive start date
      * @param end   inclusive end date
-     * @return list of {@code Sale} in the date range
+     * @return a list of {@link Sale} in the specified date range
      */
     public List<Sale> salesByDateRange(LocalDate start, LocalDate end) {
         return sales.stream()

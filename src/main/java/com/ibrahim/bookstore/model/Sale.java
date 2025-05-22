@@ -23,7 +23,30 @@ public class Sale {
         this.timestamp = timestamp;
     }
 
-    public Book getBook() { return book; }
-    public int getQuantity() { return quantity; }
-    public LocalDateTime getTimestamp() { return timestamp; }
+    /**
+     * Returns the book sold in this transaction.
+     *
+     * @return the {@link Book} that was sold
+     */
+    public Book getBook() {
+        return book;
+    }
+
+    /**
+     * Returns the number of copies sold.
+     *
+     * @return the quantity sold
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * Returns the timestamp when the sale occurred.
+     *
+     * @return a {@link LocalDateTime} representing the sale moment
+     */
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
 }

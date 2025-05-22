@@ -11,15 +11,14 @@ import java.util.stream.Collectors;
 
 /**
  * Generates console reports based on inventory and sales data.
- * <p>
- * This class provides methods to format and print:
+ *
+ * <p>This class provides methods to format and print:</p>
  * <ul>
  *   <li>Total revenue across all sales</li>
  *   <li>Top-selling books by quantity</li>
  *   <li>Books low in stock below a given threshold</li>
  *   <li>Sales within a specific date range</li>
  * </ul>
- * </p>
  */
 public class ReportGenerator {
     private final InventoryManager inventoryManager;
@@ -38,9 +37,8 @@ public class ReportGenerator {
 
     /**
      * Prints the total revenue from all recorded sales.
-     * <p>
-     * Revenue is computed as sum of (price × quantity) per sale.
-     * </p>
+     *
+     * <p>Revenue is computed as sum of (price × quantity) per sale.</p>
      */
     public void printTotalSales() {
         List<Sale> sales = salesManager.listAllSales();
@@ -56,9 +54,7 @@ public class ReportGenerator {
      * @param topN the number of top titles to display
      */
     public void printTopSellingBooks(int topN) {
-        List<Sale> sales = salesManager.listAllSales();
-        // Aggregate quantities by ISBN + title
-        Map<String, Integer> counts = sales.stream()
+        Map<String, Integer> counts = salesManager.listAllSales().stream()
                 .collect(Collectors.groupingBy(
                         s -> s.getBook().getIsbn() + " - " + s.getBook().getTitle(),
                         Collectors.summingInt(Sale::getQuantity)
@@ -67,7 +63,7 @@ public class ReportGenerator {
         System.out.println("\nTop " + topN + " Selling Books:");
         System.out.printf("%-30s %10s%n", "Book (ISBN - Title)", "Units Sold");
         counts.entrySet().stream()
-                .sorted(Map.Entry.<String, Integer>comparingByValue(Comparator.reverseOrder()))
+                .sorted(Map.Entry.<String,Integer>comparingByValue(Comparator.reverseOrder()))
                 .limit(topN)
                 .forEach(e -> System.out.printf("%-30s %10d%n", e.getKey(), e.getValue()));
     }
@@ -82,11 +78,10 @@ public class ReportGenerator {
                 .filter(b -> b.getQuantity() < threshold)
                 .collect(Collectors.toList());
 
-        System.out.println("\nLow Stock Books (below " + threshold + "):");
+        System.out.println("\nLow Stock Books (below " + threshold + "): ");
         System.out.printf("%-15s %-25s %10s%n", "ISBN", "Title", "Quantity");
         for (Book b : books) {
-            System.out.printf("%-15s %-25s %10d%n",
-                    b.getIsbn(), b.getTitle(), b.getQuantity());
+            System.out.printf("%-15s %-25s %10d%n", b.getIsbn(), b.getTitle(), b.getQuantity());
         }
     }
 
@@ -97,18 +92,17 @@ public class ReportGenerator {
      * @param end   inclusive end date
      */
     public void printSalesByDateRange(LocalDate start, LocalDate end) {
-        List<Sale> sales = salesManager.listAllSales().stream()
+        List<Sale> filtered = salesManager.listAllSales().stream()
                 .filter(s -> {
-                    LocalDate date = s.getTimestamp().toLocalDate();
-                    return (date.isEqual(start) || date.isAfter(start))
-                            && (date.isEqual(end)   || date.isBefore(end));
+                    LocalDate d = s.getTimestamp().toLocalDate();
+                    return (d.isEqual(start) || d.isAfter(start))
+                            && (d.isEqual(end)   || d.isBefore(end));
                 })
                 .collect(Collectors.toList());
 
         System.out.println("\nSales from " + start + " to " + end + ":");
-        System.out.printf("%-15s %-25s %10s %20s%n",
-                "ISBN", "Title", "Quantity", "Timestamp");
-        for (Sale s : sales) {
+        System.out.printf("%-15s %-25s %10s %20s%n", "ISBN", "Title", "Quantity", "Timestamp");
+        for (Sale s : filtered) {
             System.out.printf("%-15s %-25s %10d %20s%n",
                     s.getBook().getIsbn(),
                     s.getBook().getTitle(),

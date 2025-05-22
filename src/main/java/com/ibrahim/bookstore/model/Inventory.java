@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Represents the bookstore's inventory of books.
+ * Represents the bookstore’s inventory of books.
  */
 public class Inventory {
     private final List<Book> books;
@@ -20,6 +20,8 @@ public class Inventory {
 
     /**
      * Returns an unmodifiable list of all books in inventory.
+     *
+     * @return an unmodifiable {@link List} of {@link Book} instances
      */
     public List<Book> getBooks() {
         return Collections.unmodifiableList(books);
@@ -27,7 +29,8 @@ public class Inventory {
 
     /**
      * Adds a new book to the inventory.
-     * @param book the Book to add
+     *
+     * @param book the {@link Book} to add (must not be null)
      */
     public void addBook(Book book) {
         books.add(book);
@@ -35,8 +38,9 @@ public class Inventory {
 
     /**
      * Removes a book by its ISBN.
+     *
      * @param isbn the ISBN of the book to remove
-     * @return true if a book was removed, false otherwise
+     * @return {@code true} if a book was removed, {@code false} otherwise
      */
     public boolean removeBookByIsbn(String isbn) {
         return books.removeIf(b -> b.getIsbn().equals(isbn));
@@ -44,8 +48,9 @@ public class Inventory {
 
     /**
      * Updates an existing book’s details, matching by ISBN.
-     * @param updated the Book containing new data (must have same ISBN)
-     * @return true if the book was found and updated, false otherwise
+     *
+     * @param updated the {@link Book} containing new data (same ISBN)
+     * @return {@code true} if the book was found and updated, {@code false} otherwise
      */
     public boolean updateBook(Book updated) {
         Optional<Book> existing = books.stream()
@@ -64,8 +69,9 @@ public class Inventory {
 
     /**
      * Searches for a book by ISBN.
+     *
      * @param isbn the ISBN to search
-     * @return the Book if found, or null
+     * @return the {@link Book} if found, or {@code null} if not present
      */
     public Book findByIsbn(String isbn) {
         return books.stream()

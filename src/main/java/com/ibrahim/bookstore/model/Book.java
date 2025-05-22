@@ -15,7 +15,8 @@ public class Book {
 
     /**
      * Returns the ISBN code of this book.
-     * @return non-null ISBN string
+     *
+     * @return the ISBN string
      */
     public String getIsbn() {
         return isbn;
@@ -23,6 +24,7 @@ public class Book {
 
     /**
      * Sets the ISBN code.
+     *
      * @param isbn the ISBN to assign (must not be null or empty)
      */
     public void setIsbn(String isbn) {
@@ -31,7 +33,8 @@ public class Book {
 
     /**
      * Returns the book title.
-     * @return non-null title string
+     *
+     * @return the title string
      */
     public String getTitle() {
         return title;
@@ -39,6 +42,7 @@ public class Book {
 
     /**
      * Sets the book title.
+     *
      * @param title the title to assign (must not be null or empty)
      */
     public void setTitle(String title) {
@@ -47,7 +51,8 @@ public class Book {
 
     /**
      * Returns the author’s name.
-     * @return non-null author string
+     *
+     * @return the author string
      */
     public String getAuthor() {
         return author;
@@ -55,6 +60,7 @@ public class Book {
 
     /**
      * Sets the author’s name.
+     *
      * @param author the author to assign (must not be null or empty)
      */
     public void setAuthor(String author) {
@@ -63,7 +69,8 @@ public class Book {
 
     /**
      * Returns the unit price of this book.
-     * @return price as a non-negative double
+     *
+     * @return the price as a double
      */
     public double getPrice() {
         return price;
@@ -71,7 +78,8 @@ public class Book {
 
     /**
      * Sets the unit price.
-     * @param price non-negative price value
+     *
+     * @param price the price to assign (non-negative)
      */
     public void setPrice(double price) {
         this.price = price;
@@ -79,7 +87,8 @@ public class Book {
 
     /**
      * Returns the current stock quantity.
-     * @return non-negative integer quantity
+     *
+     * @return the quantity in stock
      */
     public int getQuantity() {
         return quantity;
@@ -87,7 +96,8 @@ public class Book {
 
     /**
      * Sets the stock quantity.
-     * @param quantity non-negative integer
+     *
+     * @param quantity the new quantity (non-negative)
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;

@@ -1,7 +1,6 @@
 package com.ibrahim.bookstore.util;
 
 import com.ibrahim.bookstore.model.Book;
-import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -10,30 +9,19 @@ import java.util.Scanner;
  * <p>
  * Provides methods to display menus, prompt for input, validate data,
  * and show messages or errors in a console-based application.
- * </p>
  * <p>
  * All methods in this class are static and thread-safe for simple console use.
  * Use {@code CLI.prompt...} methods to gather user input with built-in
  * validation loops until valid data is provided.
- * </p>
  */
 public class CLI {
+    /** Prevent instantiation. */
+    private CLI() { throw new AssertionError("Cannot instantiate CLI"); }
+
     private static final Scanner scanner = new Scanner(System.in);
 
     /**
      * Displays the main menu options to the user and returns the selected choice.
-     * <p>
-     * Menu options:
-     * <ol>
-     *   <li>List all books</li>
-     *   <li>Add a new book</li>
-     *   <li>Update a book</li>
-     *   <li>Remove a book</li>
-     *   <li>Record a sale</li>
-     *   <li>Generate report</li>
-     *   <li>Exit application</li>
-     * </ol>
-     * </p>
      *
      * @return the integer menu choice between 1 and 7 inclusive
      */
