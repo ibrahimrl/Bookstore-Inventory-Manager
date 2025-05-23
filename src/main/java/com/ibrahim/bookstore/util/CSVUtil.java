@@ -18,7 +18,23 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class for reading and writing Inventory and Sales data to CSV files.
+ * <p>
+ * Supports inventory CSVs with header:
+ * <code>isbn,title,author,price,quantity</code>
+ * and sales CSVs with header:
+ * <code>isbn,title,author,price,quantity,timestamp</code>.
+ * </p>
+ */
 public class CSVUtil {
+
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private CSVUtil() {
+        // Utility class
+    }
     private static final String INVENTORY_HEADER = "isbn,title,author,price,quantity";
     private static final String SALES_HEADER = "isbn,title,author,price,quantity,timestamp";
 
